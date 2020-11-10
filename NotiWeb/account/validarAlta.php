@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['user'])){
-	header("Location: /../index.php");
+	header("Location: /../index.php?seccion=ultimasnoticias&pagina=1");
 }
 
 ini_set('date.timezone','America/Argentina/Buenos_Aires');

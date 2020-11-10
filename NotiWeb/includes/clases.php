@@ -159,21 +159,34 @@ class User extends DB{
         }
     }
     
-    public function consultarArticulos(){
+    public function consultarArticulos($param_limit1,$param_limit2){
         
-        $query = $this->connect()->prepare ('SELECT * FROM articulo ORDER BY id_articulo DESC');
-        $query->execute();
+        $query = $this->connect()->prepare ("SELECT * FROM articulo ORDER BY id_articulo DESC LIMIT :iniciar , :narticulos");
+        
+        $query->bindParam (':iniciar',$param_limit1, PDO::PARAM_INT);
+        $query->bindParam (':narticulos',$param_limit2, PDO::PARAM_INT);
+        
+        $query->execute(/*['param1' => $param_limit1, 'param2' => $param_limit2]*/);
         
        return $registro = $query->fetchAll();
     
     }
     
-    public function filtrarArticulo($filtro){
+    public function consultarcantidad_Articulos(){
         
-        $query = $this->connect()->prepare ("SELECT * FROM articulo WHERE titulo LIKE '%$filtro%' ORDER BY id_articulo DESC");
+        $query = $this->connect()->prepare ('SELECT * FROM articulo');
         $query->execute();
         
-       return $registro = $query->fetchAll();
+        return $query->rowCount();
+    
+    }
+    
+    public function consultarcantidad_ArticulosporCategoria($categoria){
+        
+        $query = $this->connect()->prepare ('SELECT * FROM articulo WHERE id_categoria =:cate');
+        $query->execute(['cate' => $categoria]);
+        
+        return $query->rowCount();
     
     }
     
@@ -195,17 +208,22 @@ class User extends DB{
     
     }
     
-    public function consultarArticulosporCategoria($categoria){
+    public function consultarArticulosporCategoria($categoria,$param_limit1,$param_limit2){
         
-        $query = $this->connect()->prepare ('SELECT * FROM articulo WHERE id_categoria=:categoria ORDER BY id_articulo DESC');
-        $query->execute(['categoria' => $categoria]);
+        $query = $this->connect()->prepare ('SELECT * FROM articulo WHERE id_categoria=:categoria ORDER BY id_articulo DESC LIMIT :iniciar , :narticulos');
+        
+        $query->bindParam (':iniciar',$param_limit1, PDO::PARAM_INT);
+        $query->bindParam (':narticulos',$param_limit2, PDO::PARAM_INT);
+        $query->bindParam (':categoria',$categoria, PDO::PARAM_INT);
+        
+        $query->execute();
         
        return $registro = $query->fetchAll();
     
     }
     public function consultarCUdeArticulo($id_usuario,$id_articulo){
         
-        $query = $this->connect()->prepare ('SELECT * FROM cu_articulo WHERE id_usuario=:id AND id_articulo =:id_art AND accion = "creado"');
+        $query = $this->connect()->prepare ('SELECT * FROM cu_articulo WHERE id_usuario=:id AND id_articulo =:id_art');
         $query->execute(['id' => $id_usuario, 'id_art' => $id_articulo]);
         
        return $registro = $query->fetchAll();

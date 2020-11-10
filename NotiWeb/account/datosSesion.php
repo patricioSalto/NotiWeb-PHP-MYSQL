@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_SESSION['user'])){
-	header("Location: /../Tesis/index.php");
+	header("Location: /../Tesis/index.php?seccion=ultimasnoticias&pagina=1");
 }
 
     $user = new User();

@@ -25,7 +25,7 @@ if(!isset($_SESSION['user'])){
 
         $userSession->closeSession();
 
-    header("Location:../index.php");
+    header("Location:../index.php?seccion=ultimasnoticias&pagina=1");
     
 ?>
 

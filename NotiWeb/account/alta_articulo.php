@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION['user'])){
-	header("Location:../index.php");
+	header("Location:../index.php?seccion=ultimasnoticias&pagina=1");
 }
 
 include_once 'includes/clases.php';

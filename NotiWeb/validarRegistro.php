@@ -8,7 +8,7 @@ $user = new User();
 if(isset($_SESSION['user'])){
     //echo "hay sesion";
     $user->setUser($user->getCurrentUser());
-            header("Location: index.php"); 
+            header("Location: index.php?seccion=ultimasnoticias&pagina=1"); 
 
 
 }else if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['contrasenia'])){
@@ -30,7 +30,7 @@ if(isset($_SESSION['user'])){
     }else{
         echo "no pudo registrarse";
     
-        header("Location: index.php");
+        header("Location: index.php?seccion=ultimasnoticias&pagina=1");
 
     }
 }else{

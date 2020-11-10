@@ -7,6 +7,9 @@ session_start();
         ini_set('date.timezone','America/Argentina/Buenos_Aires');
         $user = new User();
 
+if(!$_GET){
+    header("location:index.php?pagina=1");
+}
     
 ?>
 
@@ -94,37 +97,32 @@ session_start();
          
           
           <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "ultimasnoticias" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=ultimasnoticias">Ultimas noticias</a>
+            <a class="nav-link" href="index.php?seccion=ultimasnoticias&pagina=1">Ultimas noticias</a>
           </li>
           
           <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "politica" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=politica">Politica</a>
+            <a class="nav-link" href="index.php?seccion=politica&pagina=1">Politica</a>
           </li>
           
           <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "sociedad" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=sociedad">Sociedad</a>
+            <a class="nav-link" href="index.php?seccion=sociedad&pagina=1">Sociedad</a>
           </li>
           
           <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "deportes" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=deportes">Deportes</a>
+            <a class="nav-link" href="index.php?seccion=deportes&pagina=1">Deportes</a>
           </li>
           
             <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "educacion" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=educacion">Educacion</a>
+            <a class="nav-link" href="index.php?seccion=educacion&pagina=1">Educacion</a>
               </li>
           
             <li <?= isset($_GET["seccion"]) && $_GET["seccion"] == "salud" ? "class='active'" : '' ?> class="nav-item">
-            <a class="nav-link" href="index.php?seccion=salud">Salud</a>
+            <a class="nav-link" href="index.php?seccion=salud&pagina=1">Salud</a>
             </li>
           
    
           
         </ul>
-        
-            <form class="form-inline my-2 my-lg-0" action="index.php?seccion=buscar" method="post">
-              <input class="form-control mr-sm-2" type="search" placeholder="Buscar y Filtrar.." aria-label="Search" name="buscar">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
         
         <ul class="navbar-nav m-auto">
         
@@ -155,8 +153,11 @@ session_start();
                       <a <?= isset($_GET["seccion"]) && $_GET["seccion"] == "mis_noticias" ? "class='active'" : '' ?> class="dropdown-item" href="index.php?seccion=mis_noticias" >Mis Noticias</a>
                       
                       <a <?= isset($_GET["seccion"]) && $_GET["seccion"] == "datosSesion" ? "class='active'" : '' ?> class="dropdown-item" href="index.php?seccion=datosSesion" >Datos de sesion</a>
+                      
+                      <a <?= isset($_GET["seccion"]) && $_GET["seccion"] == "configuracion" ? "class='active'" : '' ?> class="dropdown-item" href="index.php?seccion=configuracion" >Configuracion</a>
+                      
 
-                      <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="account/logout.php">Cerrar Sesion</a>
                 </div>
           </li>
@@ -211,14 +212,14 @@ session_start();
                 elseif($seccion == "salud"):
                    require ("secciones/salud.php");
                    
-                elseif($seccion == "buscar"):
-                   require ("secciones/filtrar.php");
-                   
                 elseif($seccion == "mis_noticias"):
                    require ("account/mis_noticias.php");
                    
                 elseif($seccion == "datosSesion"):
                    require ("account/datosSesion.php");
+                   
+                elseif($seccion == "configuracion"):
+                   require ("account/configuracion.php");
                    
                 elseif($seccion == "alta_articulo"):
                    require ("account/alta_articulo.php");

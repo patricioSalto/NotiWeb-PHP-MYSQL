@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_SESSION['user'])){
-	header("Location: index.php");
+	header("Location: index.php?seccion=ultimasnoticias&pagina=1");
 }
 
 $id_usuario = $_SESSION['user'];

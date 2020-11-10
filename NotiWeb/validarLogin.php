@@ -43,7 +43,7 @@ if(isset($_POST['email']) && isset($_POST['contrasenia'])){
         
         $user->registrarAccion($id_usuario,$hora,$fecha,$accion);
 
-        header("Location: index.php");
+        header("Location:index.php?seccion=ultimasnoticias&pagina=1");
 
     }else{
         echo "No existe el usuario";
